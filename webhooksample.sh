@@ -5,6 +5,12 @@
 # doc and example about making webhooks at  https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/connectors-using?tabs=cURL
 # Adaptive Card samples and templates https://adaptivecards.io/samples/
 #
+# Tested and written for Jamf
+# Set $4 to be your Activity Title 
+# Set $5 to be your Activity Message 
+# Set $6 to be your Icon image that appears in Teams with the message 
+#    Save your icon in Jamf in the self service icon library.  Then right click on the icon to get the full web address.  
+#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
@@ -16,6 +22,8 @@ webhookURL="https://[yourserver].webhook.office.com/webhookb2/c86933dc-blade-4da
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Customize the message here
+# 
+# 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     # When running the script in Jamf, you can set $4 and $5 as inputs instead of hard code in the script
     activityTitle="${4:-""}"
@@ -29,10 +37,10 @@ webhookURL="https://[yourserver].webhook.office.com/webhookb2/c86933dc-blade-4da
     # In Jamf > Computer > Policy > YourPolicy > Self Service, scroll down to the icon, Right click on the icon and Copy Image Address
     # If running as a script in Jamf, set the image url to $6
     activityImage="${6:-""}"
-    # activityImage="https://usw2.ics.services.jamfcloud.com/icon/hash_695675ba61356cde6f332d08eaf13512188310ad14a11e0b8431479f939798c5"
+    # activityImage="https://yada.ics.services.jamfcloud.com/icon/hash_2024mar75ba61356cde6fxyzqrstuv001d08eaf13512f939798c5"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# Information about the logged in user and computer
+# Information about the logged in user and computer that can be used in the Teams message
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 jamfProURL=$(/usr/bin/defaults read /Library/Preferences/com.jamfsoftware.jamf.plist jss_url)
@@ -53,7 +61,6 @@ computerName=$(scutil --get ComputerName)
 titleAndName="$activityTitle"-"$loggedInUser"
 currentTime=$( date +%Y-%m-%d\ %H:%M:%S )
 hookTime=$( echo "$currentTime")
-
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Build the JSON
