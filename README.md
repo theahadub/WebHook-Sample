@@ -13,3 +13,10 @@ One way to use this in Jamf
   - sudo jamf policy -event installstart
   - sudo jamf policy -event remoteinstallstart
 Now you will have an alert in Teams that the remote install event started.  You can clone the policy and make a installended hook as well.
+
+sample script<br>
+<img width="732" alt="image" src="https://github.com/user-attachments/assets/e9739f7e-f13b-434c-a58a-0bf5187ee501" />
+<br>
+sample output<br>
+<img width="371" alt="image" src="https://github.com/user-attachments/assets/23da4c76-9133-473c-bc5b-435f8138be1a" />
+
